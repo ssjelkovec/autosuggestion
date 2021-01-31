@@ -1,0 +1,24 @@
+body {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.card.login-card {
+	height: auto;
+	width: 800px;
+	padding: 30px;
+	background-color: rgba(0, 0, 0, 0.01) !important;
+}
+
+.suggestion {
+	height: 50px;
+	width: auto;
+	text-align: center;
+}
+
+.btn-primary {
+	background-color: #FFF;
+	color: black;
+	border-color: #cccccc;
+}
