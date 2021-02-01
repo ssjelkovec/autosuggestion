@@ -2,9 +2,18 @@ window.onload = function () {
 
 	var input = document.getElementById('input');
 
-	document.getElementById('s1').addEventListener('click', (event) => { input.value += document.getElementById('s1').textContent });
-	document.getElementById('s2').addEventListener('click', (event) => { input.value += document.getElementById('s2').textContent });
-	document.getElementById('s3').addEventListener('click', (event) => { input.value += document.getElementById('s3').textContent });
+	document.getElementById('s1').addEventListener('click', () => {
+		input.value += document.getElementById('s1').textContent + ' ';
+		changed()
+	});
+	document.getElementById('s2').addEventListener('click', () => {
+		input.value += document.getElementById('s2').textContent + ' ';
+		changed()
+	});
+	document.getElementById('s3').addEventListener('click', () => {
+		input.value += document.getElementById('s3').textContent + ' ';
+		changed()
+	});
 
 }
 
@@ -12,14 +21,20 @@ function changed() {
 	var input = document.getElementById('input');
 	var t = input.value
 	if (t.charAt(t.length - 1) == ' ') {
-		call(input)
+		call(t)
 	}
 }
 
 function call(input) {
 	const d = window.location.host
 
-	fetch(`http://${d}`, { method: 'POST' })
+	fetch(`http://${d}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(input)
+	})
 		.then(res => {
 			res.text().then(text => suggest(text))
 		})
