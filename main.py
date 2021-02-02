@@ -25,9 +25,8 @@ def index():
 
 		#print(naivni_bayes(L, ["sunny", "cool", "high", "true"]))
 
-
 		# array sa sugestijama koji se salje browser
 		#sugestije = ['ovo', 'je', 'test']
-		sugestije = naivni_bayes(L, ["sunny", "cool", "high", "true"])
+		sugestije = naivni_bayes(L, [" je "])
 
 		return jsonify(sugestije)
