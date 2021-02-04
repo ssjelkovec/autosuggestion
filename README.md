@@ -13,8 +13,6 @@ U mapi gjde je kod napravite mapu `db` i u nju kopirajte datoku [`sve.txt`](http
 - `pip install Flask`
 
 ### Pokretanje servera
-- Postavite `env` varijablu
-- `$env:FLASK_APP = "main.py"`
 - `flask run`
 
 Stranicu možete pristupiti na [`localhost:5000`](http://localhost:5000)
