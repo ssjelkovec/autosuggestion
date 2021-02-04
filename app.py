@@ -13,20 +13,27 @@ app.url_map.strict_slashes = False
 def index():
 	if request.method == 'GET':
 		# pocetna stranica
+		
 		return render_template('index.html')
-
 
 	# blok koda koji se izvsi kada se se upise nova rijec u pregledniku
 	else:
-		
+
 		tekst = request.json
-		print(tekst)
-		# bayes logika ovdje
 
-		#print(naivni_bayes(L, ["sunny", "cool", "high", "true"]))
+		u = zadnja_dva(tekst)
+		print(u)
 
-		# array sa sugestijama koji se salje browser
-		sugestije = ['ovo', 'je', 'test']
-		#sugestije = naivni_bayes(L, [" je "])
+		if u is not None:
+			sugestije = naivni_bayes(prve_dvije(u), ["i", "je"])
+			return jsonify(sugestije)
+		else:
+			return jsonify([])
 
-		return jsonify(sugestije)
+
+def zadnja_dva(tekst):
+	uvjet = tekst.split(" ")
+	uvjet.pop()
+
+	if not len(uvjet) < 2:
+		return uvjet[-2:]

@@ -23,8 +23,6 @@ def broji_rijec(rijec):
 	return tekst.count(rijec)
 
 
-
-
 # varijabla koja sprema broj rijeci u tekstu
 # sluzi tome da se broj rijeci negdje pamti a ne svaki put ponovnno racuna
 broj_svih_rijeci = sve_rijeci()
@@ -44,7 +42,6 @@ def napravi_array():
 	a = []
 	i = 0
 
-
 	for r in range(broj_svih_rijeci):
 		# provjerava da je rijec, a ne tocka ili linebreak...
 		if not rijeci[r].isalnum():
@@ -58,8 +55,9 @@ def napravi_array():
 			result.append((temp))
 			a.clear()
 
-	#print(result)
+	# print(result)
 	return result
+
 
 L = napravi_array()
 
@@ -83,17 +81,15 @@ def stupac(L, index):
 
 	for i in L:
 		Li.append(i[index])
-
 	return Li
 
 
-def elementarni_dog(L):
+def elementarni_dog(V):
 	Elem = []
 
-	for i in L:
+	for i in V:
 		if i not in Elem:
 			Elem.append(i)
-
 	return Elem
 
 
@@ -106,6 +102,15 @@ def redak(L, uvjet):
 
 	return Nova_lista
 
+def prve_dvije(uvjet):
+	r = []
+	for i in L:
+		if i[0] == uvjet[0] and i[1] == uvjet[1]:
+			r.append(i)
+
+	return r
+
+
 
 def naivni_bayes(L, uvjet):
 	Elem = elementarni_dog(stupac(L, len(L[0]) - 1))
@@ -117,7 +122,18 @@ def naivni_bayes(L, uvjet):
 			Rez[i] = Rez[i] * bayes(uvjet[j], Elem[i], stupac(redak(L, Elem[i]), j),
 									stupac(redak(L, Elem[i]), len(L[0]) - 1))
 
-		for i in range(len(Rez)):
-			Rez[i] *= 2
+	for i in range(len(Rez)):
+		Rez[i] *= 2
 
-		return Rez
+		for i in range(2):
+			for j in range(len(Rez)):
+				if(Rez[j] > Rez[i]):
+					tmp = Rez[i]
+					Rez[i] = Rez[j]
+					Rez[j] = tmp
+					tmp = Elem[i]
+					Elem[i] = Elem[j]
+					Elem[j] = tmp
+
+		r = [Elem[0], Elem[1]]
+	return r
