@@ -7,27 +7,6 @@ db_path = f"{file_path[0]}\\db"
 sve_txt = f"{db_path}\\sve.txt"
 
 
-def sve_rijeci():
-	f = open(sve_txt, "r", encoding="utf-8")
-	tekst = f.read()
-	rijeci = tekst.split(" ")
-	return len(rijeci)
-
-
-# funkcija uzima argument rijec
-# broji koliko se puta rijec ponavalja u tekstu
-def broji_rijec(rijec):
-
-	f = open(sve_txt, "r", encoding="utf-8")
-	tekst = f.read()
-	return tekst.count(rijec)
-
-
-# varijabla koja sprema broj rijeci u tekstu
-# sluzi tome da se broj rijeci negdje pamti a ne svaki put ponovnno racuna
-broj_svih_rijeci = sve_rijeci()
-
-
 # funkcija razdvaja rijeci iz teksta u 2d polje
 # npr.
 # [["ovo", "je", "samo"], ["test", "12", "34"], ["test", "je", ovo]]
@@ -42,7 +21,7 @@ def napravi_array():
 	a = []
 	i = 0
 
-	for r in range(broj_svih_rijeci):
+	for r in range(len(rijeci)):
 		# provjerava da je rijec, a ne tocka ili linebreak...
 		if not rijeci[r].isalnum():
 			continue
