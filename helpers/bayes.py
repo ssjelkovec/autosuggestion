@@ -30,8 +30,7 @@ def napravi_array():
 		i += 1
 		if i == 3:
 			i = 0
-			temp = a.copy()
-			result.append((temp))
+			result.append(a.copy())
 			a.clear()
 
 	# print(result)
