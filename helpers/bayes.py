@@ -102,6 +102,7 @@ def redak(L, uvjet):
 
 	return Nova_lista
 
+
 def prve_dvije(uvjet):
 	r = []
 	for i in L:
@@ -111,8 +112,10 @@ def prve_dvije(uvjet):
 	return r
 
 
-
 def naivni_bayes(L, uvjet):
+	if not len(L):
+		return ["​"] * 3
+		
 	Elem = elementarni_dog(stupac(L, len(L[0]) - 1))
 	Rez = []
 
@@ -122,18 +125,13 @@ def naivni_bayes(L, uvjet):
 			Rez[i] = Rez[i] * bayes(uvjet[j], Elem[i], stupac(redak(L, Elem[i]), j),
 									stupac(redak(L, Elem[i]), len(L[0]) - 1))
 
-	for i in range(len(Rez)):
-		Rez[i] *= 2
+	for i in range(3):
+		for j in range(len(Rez)):
+			if(Rez[j] > Rez[i]):
+				Rez[i], Rez[j] = Rez[j], Rez[i]
+				Elem[i], Elem[j] = Elem[j], Elem[i]
 
-		for i in range(2):
-			for j in range(len(Rez)):
-				if(Rez[j] > Rez[i]):
-					tmp = Rez[i]
-					Rez[i] = Rez[j]
-					Rez[j] = tmp
-					tmp = Elem[i]
-					Elem[i] = Elem[j]
-					Elem[j] = tmp
-
-		r = [Elem[0], Elem[1]]
-	return r
+		if len(Elem):
+			return Elem[:3]
+		else:
+			return ["​"] * 3

@@ -25,10 +25,10 @@ def index():
 		print(u)
 
 		if u is not None:
-			sugestije = naivni_bayes(prve_dvije(u), ["i", "je"])
+			sugestije = naivni_bayes(prve_dvije(u), u)
 			return jsonify(sugestije)
 		else:
-			return jsonify([])
+			return jsonify(["​"] * 3)
 
 
 def zadnja_dva(tekst):
