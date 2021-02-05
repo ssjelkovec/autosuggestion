@@ -28,7 +28,7 @@ def index():
 			sugestije = naivni_bayes(prve_dvije(u), u)
 			return jsonify(sugestije)
 		else:
-			return jsonify(["​"] * 3)
+			return jsonify([""] * 3)
 
 
 def zadnja_dva(tekst):

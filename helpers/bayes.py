@@ -114,8 +114,8 @@ def prve_dvije(uvjet):
 
 def naivni_bayes(L, uvjet):
 	if not len(L):
-		return ["​"] * 3
-		
+		return [""] * 3
+
 	Elem = elementarni_dog(stupac(L, len(L[0]) - 1))
 	Rez = []
 
@@ -134,4 +134,4 @@ def naivni_bayes(L, uvjet):
 		if len(Elem):
 			return Elem[:3]
 		else:
-			return ["​"] * 3
+			return [""] * 3
