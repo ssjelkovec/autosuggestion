@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from helpers.bayes import *
+from helpers import naivni_bayes, prve_dvije
 
 app = Flask(__name__,
 			template_folder='./templates',

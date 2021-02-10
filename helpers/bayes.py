@@ -1,15 +1,16 @@
-import re
 import os.path
 
-# db path
-file_path = os.path.dirname(__file__).rpartition('\\')
-db_path = f"{file_path[0]}\\db"
-sve_txt = f"{db_path}\\sve.txt"
+baza_rijeci = "sve.txt"
 
+# db path
+file_path = os.path.dirname(__file__).rpartition("\\")
+db_path = f"{file_path[0]}\\db"
+sve_txt = f"{db_path}\\{baza_rijeci}"
 
 # funkcija razdvaja rijeci iz teksta u 2d polje
 # npr.
 # [["ovo", "je", "samo"], ["test", "12", "34"], ["test", "je", ovo]]
+
 
 def napravi_array():
 	f = open(sve_txt, "r", encoding="utf-8")
@@ -100,12 +101,16 @@ def naivni_bayes(L, uvjet):
 	for i in range(len(Elem)):
 		Rez.append(P(Elem[i], stupac(L, len(L[0]) - 1)))
 		for j in range(len(L[0]) - 1):
-			Rez[i] = Rez[i] * bayes(uvjet[j], Elem[i], stupac(redak(L, Elem[i]), j),
-									stupac(redak(L, Elem[i]), len(L[0]) - 1))
+			Rez[i] = Rez[i] * bayes(
+				uvjet[j],
+				Elem[i],
+				stupac(redak(L, Elem[i]), j),
+				stupac(redak(L, Elem[i]), len(L[0]) - 1),
+			)
 
 	for i in range(3):
 		for j in range(len(Rez)):
-			if(Rez[j] > Rez[i]):
+			if Rez[j] > Rez[i]:
 				Rez[i], Rez[j] = Rez[j], Rez[i]
 				Elem[i], Elem[j] = Elem[j], Elem[i]
 
